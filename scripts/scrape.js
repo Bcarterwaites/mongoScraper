@@ -7,15 +7,13 @@ var cheerio = require("cheerio");
 var scrape = function() {
     // Scrape the NYTimes website
     return axios.get("http://www.nytimes.com").then(function(res) {
-        debugger
         var $ = cheerio.load(res.data);
-        debugger
         console.log("scraping");
     // Make an empty array to save our article info
     var articles = [];
 
     // Find and loop through each element that has the "css-180b3ld" class
-    $("div.css-189d5rw e6b6cmu0").each(function(i, element) {
+    $("div.css-1tk5puc").each(function(i, element) {
         // In each article section, we grab the child with the class story-heading
 
         // Then we grab the inner text of this element and store it
