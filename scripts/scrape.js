@@ -1,4 +1,4 @@
-// Our scraping tools
+// Our scraping tool
 var axios = require("axios");
 var cheerio = require("cheerio");
 
