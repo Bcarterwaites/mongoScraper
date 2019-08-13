@@ -9,6 +9,7 @@ var scrape = function() {
     return axios.get("http://www.nytimes.com").then(function(res) {
         debugger
         var $ = cheerio.load(res.data);
+        debugger
         console.log("scraping");
     // Make an empty array to save our article info
     var articles = [];
