@@ -5,10 +5,18 @@ var mongoose = require("mongoose");
 var exphbs = require("express-handlebars");
 
 
+// Set up port
+
+var PORT = process.env.PORT || 8080;
 
 // Intialize Express
 
 var app = express();
+
+
+// Import routes and give the server access to them
+
+var routes = require("./routes")
 
 
 // Parse request body as JSON
@@ -20,44 +28,24 @@ app.use(express.static("public"));
 
 // Database configuration with mongoose
 
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scraper";
-
-if (process.env.MONGODB_URI) {
-  
-  mongoose.connect(process.env.MONGODB_URI);
-
-} else {
-
-  mongoose.connect(MONGODB_URI);
-}
-
-var db = mongoose.connection;
-
-db.once("error", function(error) {
-  console.log("Mongoose Error: " + error)
-});
-
-db.once("open", function() {
-  console.log("Mongoose connection sucessful");
-});
 
 // Set engine and default for handlebars
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-// Import routes and give the server access to them
-
-var routes = require("./routes")
-
 
 // Have requests go through route middleware 
 
 app.use(routes);
 
-// Port Setup
+// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scraper";
 
-var PORT = process.env.PORT || 8080;
+// Connect to the Mongo DB
+mongoose.connect(MONGODB_URI);
+
+mongoose.Promise = Promise;
 
 // Start the server
 
