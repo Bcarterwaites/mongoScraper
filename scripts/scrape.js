@@ -1,4 +1,4 @@
-// Our scraping tool
+// Our scraping tools
 var axios = require("axios");
 var cheerio = require("cheerio");
 
@@ -13,7 +13,7 @@ var scrape = function() {
     var articles = [];
 
     // Find and loop through each element that has the "css-180b3ld" class
-    $("div.css-189d5rw e6b6cmu0").each(function(i, element) {
+    $("div.main-content layout-dbc one-feed").each(function(i, element) {
         // In each article section, we grab the child with the class story-heading
 
         // Then we grab the inner text of this element and store it
