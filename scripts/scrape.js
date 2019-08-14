@@ -47,7 +47,7 @@ var scrape = function() {
             var dataToAdd = {
                 headline: headNeat,
                 summary: sumNeat,
-                url: "https://www.nytimes.com" + url
+                url: "http://www.espn.com" + url
             };
 
             articles.push(dataToAdd);
